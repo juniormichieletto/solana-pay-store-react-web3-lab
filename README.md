@@ -1,2 +1,19 @@
-# solana-pay-store-web3-lab
-Lab used in the project Solana Online Store on Web3 with React
+# buildspace Store on Solana Pay Project
+
+## **Welcome 👋**
+
+Requerements:
+
+- NodeJS (recommended to install through the NVM (Node Version Manager) )
+
+```bash
+nvm install
+node -v
+npm -v
+```
+
+Running the Project:
+
+```bash
+npm run dev
+```
