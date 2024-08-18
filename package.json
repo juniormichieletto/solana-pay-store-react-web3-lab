@@ -18,7 +18,8 @@
     "dev": "next dev",
     "build": "yarn clean && next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prettify": "prettier --write **/*.{js,json}"
   },
   "dependencies": {
     "@solana/pay": "^0.2.5",

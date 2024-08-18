@@ -1,7 +1,10 @@
 import React, { useMemo } from "react";
 import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
 import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
-import { ConnectionProvider, WalletProvider } from "@solana/wallet-adapter-react";
+import {
+  ConnectionProvider,
+  WalletProvider,
+} from "@solana/wallet-adapter-react";
 import {
   PhantomWalletAdapter,
   SolflareWalletAdapter,
@@ -29,7 +32,7 @@ const App = ({ Component, pageProps }) => {
       new SolflareWalletAdapter({ network }),
       new TorusWalletAdapter(),
     ],
-    [network]
+    [network],
   );
 
   return (
