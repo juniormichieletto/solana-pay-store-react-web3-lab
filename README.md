@@ -17,3 +17,11 @@ Running the Project:
 ```bash
 npm run dev
 ```
+
+---
+
+## Getting fake Sol on DEVNET
+
+You can get fake Sol Airdrop in the devnet in the link below:
+
+<https://solfaucet.com/>
