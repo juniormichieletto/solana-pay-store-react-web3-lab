@@ -89,6 +89,7 @@ const createTransaction = async (req, res) => {
     const serializedTransaction = tx.serialize({
       requireAllSignatures: false,
     });
+
     const base64 = serializedTransaction.toString("base64");
 
     res.status(200).json({
