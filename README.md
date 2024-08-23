@@ -25,3 +25,7 @@ npm run dev
 You can get fake Sol Airdrop in the devnet in the link below:
 
 <https://solfaucet.com/>
+
+USDC Airdrop:
+
+<https://spl-token-faucet.com/?token-name=USDC>
