@@ -5,6 +5,9 @@
 Requerements:
 
 - NodeJS (recommended to install through the NVM (Node Version Manager) )
+- Phantom Wallet
+
+### 1. Installing the required Node vesion
 
 ```bash
 nvm install
@@ -12,7 +15,17 @@ node -v
 npm -v
 ```
 
-Running the Project:
+### 2. Local config prepararion
+
+create the `.env` file with the following structure
+
+```properties
+NEXT_PUBLIC_OWNER_PUBLIC_KEY=<your_wallet_public_key>
+```
+
+> The public key is the one from the Phantom Wallet
+
+### 3. Running the project
 
 ```bash
 npm run dev

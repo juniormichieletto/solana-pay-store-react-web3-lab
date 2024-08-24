@@ -1,12 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { PublicKey } from "@solana/web3.js";
 import { useWallet } from "@solana/wallet-adapter-react";
 import dynamic from "next/dynamic";
 import Product from "../components/Product";
-
-// Constants
-const TWITTER_HANDLE = "_buildspace";
-const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
+import CreateProduct from "../components/CreateProduct";
 
 const App = () => {
   // Dynamic import `WalletMultiButton` to prevent hydration error
@@ -18,6 +14,10 @@ const App = () => {
 
   // This will fetch the users' public key (wallet address) from any wallet we support
   const { publicKey } = useWallet();
+  const isOwner = publicKey
+    ? publicKey.toString() === process.env.NEXT_PUBLIC_OWNER_PUBLIC_KEY
+    : false;
+  const [creating, setCreating] = useState(false);
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -60,9 +60,19 @@ const App = () => {
           <p className="sub-text">
             The only emoji store that accepts shitcoins
           </p>
+
+          {isOwner && (
+            <button
+              className="create-product-button"
+              onClick={() => setCreating(!creating)}
+            >
+              {creating ? "Close" : "Create Product"}
+            </button>
+          )}
         </header>
 
         <main>
+          {creating && <CreateProduct />}
           {publicKey ? renderItemBuyContainer() : renderNotConnectedContainer()}
         </main>
 
@@ -74,10 +84,12 @@ const App = () => {
           />
           <a
             className="footer-text"
-            href={TWITTER_LINK}
+            href="https://x.com/aj_m87"
             target="_blank"
             rel="noreferrer"
-          >{`built on @${TWITTER_HANDLE}`}</a>
+          >
+            {"built on @aj_m87"}
+          </a>
         </div>
       </div>
     </div>
