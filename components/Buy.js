@@ -4,7 +4,7 @@ import { findReference, FindReferenceError } from "@solana/pay";
 import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 import { InfinitySpin } from "react-loader-spinner";
 import IPFSDownload from "./IpfsDownload";
-import { addOrder } from "../lib/api";
+import { addOrder, hasPurchased, fetchItem } from "../lib/api";
 
 const STATUS = {
   Initial: "Initial",
@@ -17,7 +17,8 @@ export default function Buy({ itemID }) {
   const { publicKey, sendTransaction } = useWallet();
   const orderID = useMemo(() => Keypair.generate().publicKey, []); // Public key used to identify the order
 
-  const [loading, setLoading] = useState(false);
+  const [item, setItem] = useState(null); // IPFS hash & filename of the purchased item
+  const [loading, setLoading] = useState(false); // Loading state of all above
   const [status, setStatus] = useState(STATUS.Initial); // Tracking transaction status
 
   const order = useMemo(
@@ -57,6 +58,22 @@ export default function Buy({ itemID }) {
   };
 
   useEffect(() => {
+    // Check if this address has already purchased this item
+    // If so, fetch the item and set paid to true
+    // Async function to avoid blocking the UI
+    async function checkPurchased() {
+      const purchased = await hasPurchased(publicKey, itemID);
+      if (purchased) {
+        setStatus(STATUS.Paid);
+        const item = await fetchItem(itemID);
+        setItem(item);
+        console.log("Address has already purchased this item!");
+      }
+    }
+    checkPurchased();
+  }, [publicKey, itemID]);
+
+  useEffect(() => {
     // Check if transaction was confirmed
     if (status === STATUS.Submitted) {
       setLoading(true);
@@ -86,6 +103,15 @@ export default function Buy({ itemID }) {
       return () => {
         clearInterval(interval);
       };
+    }
+
+    async function getItem(itemID) {
+      const item = await fetchItem(itemID);
+      setItem(item);
+    }
+
+    if (status === STATUS.Paid) {
+      getItem(itemID);
     }
   }, [status]);
 
