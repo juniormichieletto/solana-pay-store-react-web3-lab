@@ -1,5 +1,9 @@
 # buildspace Store on Solana Pay Project
 
+Wanna do you by yourself? :)
+
+<https://build.w3d.community/courses/Solana_Pay_Store>
+
 ## **Welcome 👋**
 
 Requerements:
