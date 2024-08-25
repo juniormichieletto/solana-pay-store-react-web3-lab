@@ -42,3 +42,9 @@ You can get fake Sol Airdrop in the devnet in the link below:
 USDC Airdrop:
 
 <https://spl-token-faucet.com/?token-name=USDC>
+
+---
+
+## Demo
+
+![](https://github.com/juniormichieletto/solana-pay-store-web3-lab/blob/main/docs/demo.gif)
